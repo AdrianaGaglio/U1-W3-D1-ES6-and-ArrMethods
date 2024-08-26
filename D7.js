@@ -91,6 +91,18 @@ stringsLenght("Harry", "Potter", "Hermione", "Granger");
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
 */
 
+const oddNumbersArray = function () {
+  const oddNumbers = [];
+  for (i = 0; i < 100; i++) {
+    if (i % 2 !== 0) {
+      oddNumbers.push(i);
+    }
+  }
+  return oddNumbers;
+};
+
+console.log("Numeri dispari da 1 a 99", oddNumbersArray());
+
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
 const movies = [
   {
@@ -200,6 +212,13 @@ const movies = [
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
+
+const numberOfMovies = function () {
+  const totalOfMovies = movies.length;
+  return totalOfMovies;
+};
+
+console.log("Numero film totali", numberOfMovies());
 
 /* ESERCIZIO 11 (map)
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
