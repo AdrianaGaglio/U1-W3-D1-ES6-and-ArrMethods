@@ -57,8 +57,7 @@ console.log("Somma i numeri dell'array numerico", sumNumbers(numbersArray));
 */
 
 const reduceFunction = (numbers) => {
-  const initial = 0;
-  return numbers.reduce((sum, valueToSum) => sum + valueToSum, initial);
+  return numbers.reduce((sum, valueToSum) => sum + valueToSum, 0);
 };
 
 console.log("Somma calcolata con reduce", reduceFunction(numbersArray));
@@ -211,6 +210,20 @@ const movies = [
   Scrivi una funzione per trovare il film più vecchio nell'array fornito.
 */
 
+const oldestMovie = (movies) => {
+  let yearToCompare = movies[0].Year;
+  let counter = 0;
+  movies.forEach((movie) => {
+    if (movie.Year < yearToCompare) {
+      yearToCompare = movie.Year;
+    }
+  });
+  let index = movies.findIndex((movie) => movie.Year === yearToCompare);
+  return movies[index];
+};
+
+console.log("Film più vecchio:", oldestMovie(movies));
+
 /* ESERCIZIO 10
   Scrivi una funzione per ottenere il numero di film contenuti nell'array fornito.
 */
@@ -226,9 +239,22 @@ console.log("Numero film totali", numberOfMovies());
   Scrivi una funzione per creare un array con solamente i titoli dei film contenuti nell'array fornito.
 */
 
+const moviesTitles = (movies) => {
+  return (titles = movies.map((movie) => movie.Title));
+};
+
+console.log(moviesTitles(movies));
+
 /* ESERCIZIO 12 (filter)
   Scrivi una funzione per ottenere dall'array fornito solamente i film usciti nel millennio corrente.
 */
+
+const recents = (movies) => {
+  let recentsMovies = movies.filter((movie) => movie.Year > 1999);
+  return recentsMovies;
+};
+
+console.log(recents(movies));
 
 /* ESERCIZIO 13 (reduce)
   Scrivi una funzione per calcolare la somma di tutti gli anni in cui sono stati prodotti i film contenuti nell'array fornito.
