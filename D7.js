@@ -3,7 +3,7 @@
   prima e gli ultimi 3 della seconda. Converti la stringa risultante in maiuscolo e mostrala con un console.log().
 */
 
-const stringsConcat = function (string1, string2) {
+const stringsConcat = (string1, string2) => {
   return (string1.substring(0, 2) + string2.substring(string2.length - 3)).toUpperCase();
 };
 
@@ -13,34 +13,36 @@ console.log(stringsConcat("pluto", "paperino"));
 /* ESERCIZIO 2 (for)
   Scrivi una funzione che torni un array di 10 elementi; ognuno di essi deve essere un valore random compreso tra 0 e 100 (incluso).
 */
-const numbersArray = [];
-const numbers = function () {
-  for (i = 0; i < 10; i++) {
+
+const numbersArray = []; // dichiaro l'array fuori in modo da poterlo utilizzare nei successivi esercizi
+
+const numbers = () => {
+  for (let i = 0; i < 10; i++) {
     const randomNumber = Math.floor(Math.random() * 101);
     numbersArray.push(randomNumber);
   }
   return numbersArray;
 };
 
-console.log("Arrai di 10 numeri random", numbers());
+console.log("Array di 10 numeri random", numbers());
 
 /* ESERCIZIO 3 (filter)
   Scrivi una funzione per ricavare solamente i valori PARI da un array composto da soli valori numerici
 */
 
-const evenNumbers = function () {
+const evenNumbers = (numbers) => {
   let evenNumbers = [];
-  evenNumbers = numbersArray.filter((even) => even % 2 === 0);
+  evenNumbers = numbers.filter((even) => even % 2 === 0);
   return evenNumbers;
 };
 
-console.log("Numeri pari", evenNumbers());
+console.log("Numeri pari (passo un array come parametro)", evenNumbers(numbersArray));
 
 /* ESERCIZIO 4 (forEach)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
 
-const sumNumbers = function () {
+const sumNumbers = function (numbers) {
   let sum = 0;
   numbersArray.forEach((number) => {
     sum += parseInt(number);
@@ -48,52 +50,51 @@ const sumNumbers = function () {
   return sum;
 };
 
-console.log("Somma", sumNumbers());
+console.log("Somma i numeri dell'array numerico", sumNumbers(numbersArray));
 
 /* ESERCIZIO 5 (reduce)
   Scrivi una funzione per sommare i numeri contenuti in un array
 */
 
-const reduceFunction = function () {
+const reduceFunction = (numbers) => {
   const initial = 0;
-  const sumNumbers = numbersArray.reduce((sum, valueToSum) => sum + valueToSum, initial);
-  return sumNumbers;
+  return numbers.reduce((sum, valueToSum) => sum + valueToSum, initial);
 };
 
-console.log("Somma calcolata con reduce", reduceFunction());
+console.log("Somma calcolata con reduce", reduceFunction(numbersArray));
 
 /* ESERCIZIO 6 (map)
   Scrivi una funzione che, dato un array di soli numeri e un numero n come parametri, ritorni un secondo array con tutti i valori del precedente incrementati di n
 */
 
-const addN = function (n) {
-  let mappedArray = [];
-  mappedArray = numbersArray.map((value) => value + n);
-  console.log(`Sommo ${n} ai valori dell'array`, mappedArray);
+const addN = (arrayOfNumbers, n = 0) => {
+  return arrayOfNumbers.map((value) => value + n);
 };
 
-addN(1);
-addN(5);
+console.log("Valori incrementati di 1", addN(numbersArray, 1));
+console.log("Valori incrementati di 5", addN(numbersArray, 5));
 
 /* ESERCIZIO 7 (map)
   Scrivi una funzione che, dato un array di stringhe, ritorni un nuovo array contenente le lunghezze delle rispettive stringhe dell'array di partenza
   es.: ["EPICODE", "is", "great"] => [7, 2, 5]
 */
 
-const stringsLenght = function (...strings) {
-  const length = strings.map((string) => string.length);
+const stringsLenght = (arrayOfStrings) => {
+  const length = arrayOfStrings.map((string) => string.length);
   console.log("Lunghezza delle stringhe inserite", length);
 };
 
-stringsLenght("Harry", "Potter", "Hermione", "Granger");
+const stringsArray = ["EPICODE", "is", "great"];
+stringsLenght(["Harry", "Potter"]);
+stringsLenght(stringsArray);
 
 /* ESERCIZIO 8 (forEach o for)
   Scrivi una funzione per creare un array contenente tutti i valori DISPARI da 1 a 99.
 */
 
-const oddNumbersArray = function () {
+const oddNumbersArray = () => {
   const oddNumbers = [];
-  for (i = 0; i < 100; i++) {
+  for (let i = 0; i < 100; i++) {
     if (i % 2 !== 0) {
       oddNumbers.push(i);
     }
@@ -104,6 +105,7 @@ const oddNumbersArray = function () {
 console.log("Numeri dispari da 1 a 99", oddNumbersArray());
 
 /* Questo array di film verrà usato negli esercizi a seguire. Non modificarlo e scorri oltre per riprendere gli esercizi :) */
+
 const movies = [
   {
     Title: "The Lord of the Rings: The Fellowship of the Ring",
